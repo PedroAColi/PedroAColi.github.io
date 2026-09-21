@@ -8,14 +8,12 @@
     --ease-samurai: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* --- MODO CLARO --- */
 body.light-mode {
     --bg-color: #e6e6e6;
     --text-color: #1a1a1a;
     --grid-color: rgba(0,0,0,0.05);
 }
 
-/* Ajuste de imagens no modo claro */
 body.light-mode .main-img-box {
     filter: grayscale(100%) contrast(1.2) brightness(0.9);
 }
@@ -27,11 +25,9 @@ body {
     color: var(--text-color);
     font-family: var(--font-body);
     overflow-x: hidden;
-    /* Transição suave nas cores do texto para acompanhar a mancha no fundo */
     transition: background-color 0.1s, color 0.5s ease;
 }
 
-/* --- MANCHA DE TINTA (AGORA NO FUNDO) --- */
 .ink-transition-blob {
     position: fixed;
     top: 50%; left: 50%;
@@ -41,7 +37,6 @@ body {
     transform: translate(-50%, -50%) scale(0);
     pointer-events: none;
     
-    /* CAMADA BAIXA: Fica acima da grade (-1) mas abaixo do conteúdo (10) */
     z-index: 1; 
 }
 
@@ -50,14 +45,12 @@ body {
     transform: translate(-50%, -50%) scale(250);
 }
 
-/* --- LAYOUT BÁSICO E CAMADAS --- */
 .bg-grid-lines {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    z-index: -1; /* Bem no fundo */
+    z-index: -1;
     background: repeating-linear-gradient(90deg, transparent 0, transparent 24.9%, var(--grid-color) 25%);
 }
 
-/* Header, Main e Footer precisam estar acima da mancha de tinta */
 header, main, footer {
     position: relative;
     z-index: 10;
@@ -69,7 +62,6 @@ nav ul { display: flex; gap: 2rem; list-style: none; align-items: center; }
 nav a { text-decoration: none; color: #888; text-transform: uppercase; font-size: 0.9rem; transition: color 0.3s; }
 nav a:hover { color: var(--accent-color); }
 
-/* Botão de Tema */
 .btn-theme {
     background: none; border: 1px solid transparent;
     font-family: var(--font-heading); font-size: 1rem;
@@ -79,7 +71,6 @@ nav a:hover { color: var(--accent-color); }
 
 main { padding: 5% 10%; }
 
-/* --- CURSOR (SEMPRE NO TOPO) --- */
 .custom-cursor {
     position: fixed; width: 20px; height: 20px;
     border: 2px solid var(--accent-color); border-radius: 50%;
@@ -90,7 +81,6 @@ main { padding: 5% 10%; }
 }
 .custom-cursor.hovered { width: 50px; height: 50px; background-color: rgba(255, 60, 0, 0.2); }
 
-/* --- VIDEO POPUP --- */
 .video-preview-cursor {
     position: fixed; width: 300px; height: 170px;
     background: #000; border: 1px solid var(--accent-color);
@@ -107,7 +97,6 @@ main { padding: 5% 10%; }
     font-family: var(--font-heading); letter-spacing: 1px;
 }
 
-/* --- SEÇÕES DE PROJETO --- */
 .project-section {
     display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem;
     align-items: center; margin-bottom: 150px; opacity: 0;
@@ -117,7 +106,6 @@ main { padding: 5% 10%; }
 .project-section.layout-inverted { grid-template-columns: 1fr 1.2fr; direction: rtl; }
 .project-section.layout-inverted > * { direction: ltr; }
 
-/* Animação Samurai */
 .text-container h2 {
     font-family: var(--font-heading);
     font-size: clamp(3rem, 6vw, 5rem);
@@ -153,7 +141,6 @@ main { padding: 5% 10%; }
 .btn-magnetic:hover { background: var(--text-color); color: var(--bg-color); }
 .text-container p { color: #999; margin-bottom: 3rem; line-height: 1.6; max-width: 400px; }
 
-/* --- IMAGENS --- */
 .collage-container { position: relative; height: 500px; width: 100%; }
 .main-img-box {
     position: absolute; width: 85%; height: 90%;
@@ -171,7 +158,6 @@ main { padding: 5% 10%; }
     color: var(--text-color); z-index: 10; top: -50px; left: -20px;
 }
 
-/* --- SOBRE --- */
 .about-section {
     padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.1);
     opacity: 0; transform: translateY(50px); transition: all 1s ease;
