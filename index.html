@@ -445,7 +445,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* contact */
 .foot{background:#121311;color:#ECEAE3;padding:clamp(88px,10vw,150px) 4vw 0;position:relative;overflow:hidden;overflow:clip}
-.foot-tag{margin:0;font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:clamp(56px,11vw,210px);line-height:.8;letter-spacing:-.02em}
+.foot-tag{margin:0;font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:clamp(36px,6.6vw,124px);line-height:.86;letter-spacing:-.02em}
 .foot-tag .acc{color:var(--accent,#FF5B1F)}
 .steps{list-style:none;margin:clamp(56px,7vw,110px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
 .steps li{display:flex;flex-direction:column;gap:14px;padding-top:18px;border-top:1.5px solid rgba(236,234,227,.18)}
@@ -578,7 +578,7 @@ html{scroll-behavior:auto}
 <div class="hero-top mono hero-fade">
 <span>(Full-stack developer)</span>
 <span class="hide-s">Portfolio 2026</span>
-<span>From pixel to database</span>
+<span>From scratch, to a full project</span>
 </div>
 <div class="hero-mid">
 <div class="hero-intro hero-fade">
@@ -637,8 +637,8 @@ html{scroll-behavior:auto}
 <div class="topo-wrap" aria-hidden="true"><canvas class="topo" data-tone="dark"></canvas></div>
 <div class="sec-head mono"><span>01 / About</span><span class="mut-i">A message from Coli</span></div>
 <div class="about-q rv">
-<h2 class="q-h">[Who you are, in one line]</h2>
-<p class="q-p">[Your text about who you are. Two or three sentences.]</p>
+<h2 class="q-h">Coli, 20 yo</h2>
+<p class="q-p">I am a Software Engineering student, really excited to start my professional career in software development.</p>
 </div>
 <p class="manif" data-ref="rManif"><span class="w">I</span> <span class="w">work</span> <span class="w">on</span> <span class="w">every</span> <span class="w">layer.</span> <span class="w">I</span> <span class="w">design</span> <span class="w">the</span> <span class="w k">interface,</span> <span class="w">write</span> <span class="w">the</span> <span class="w k">API,</span> <span class="w">model</span> <span class="w">the</span> <span class="w k">database</span> <span class="w">and</span> <span class="w">put</span> <span class="w">it</span> <span class="w k">online.</span> <span class="w">You</span> <span class="w">talk</span> <span class="w">to</span> <span class="w">one</span> <span class="w">person</span> <span class="w">from</span> <span class="w">the</span> <span class="w">first</span> <span class="w">screen</span> <span class="w">to</span> <span class="w">the</span> <span class="w">last</span> <span class="w">query.</span></p>
 <div class="manif-sig rv">
@@ -911,7 +911,7 @@ html{scroll-behavior:auto}
 <footer id="contact" class="foot">
 <div class="topo-wrap" aria-hidden="true"><canvas class="topo" data-tone="dark"></canvas></div>
 <div class="sec-head mono"><span>05 / Contact</span><span class="mut-i">Next step</span></div>
-<h2 class="foot-tag rv">From pixel<br><span class="acc">to database.</span></h2>
+<h2 class="foot-tag rv">From scratch,<br><span class="acc">to a full project.</span></h2>
 <ol class="steps rv">
 <li><span class="step-n">01</span><span class="step-t">You describe the problem by email.</span></li>
 <li><span class="step-n">02</span><span class="step-t">We schedule a call to define the scope.</span></li>
@@ -922,7 +922,7 @@ html{scroll-behavior:auto}
 <div class="foot-col foot-col-main">
 <p class="foot-lede">Tell me the problem. I take care of the layers.</p>
 <div class="mail-row">
-<a class="mail" href="mailto:your@email.com">[your@email.com]</a>
+<a class="mail" href="mailto:Colidev@gmail.com">Colidev@gmail.com</a>
 <button class="btn btn-light" type="button" data-on-click="copyMail"><span data-text="copyLabel"></span></button>
 </div>
 </div>
@@ -1305,7 +1305,7 @@ html{scroll-behavior:auto}
             this._tc = setTimeout(() => this.setState({ copied: '' }), 2000);
           };
           try {
-            navigator.clipboard.writeText('your@email.com').then(() => settle(true), () => settle(false));
+            navigator.clipboard.writeText('Colidev@gmail.com').then(() => settle(true), () => settle(false));
           } catch (e) { settle(false); }
         },
         replay: () => { this.setState({ menu: false }); this.startIntro(); },
