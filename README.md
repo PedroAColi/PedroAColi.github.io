@@ -1,1 +1,5 @@
-This is a WIP Portfolio page for studying and self-promotion purposes, feel free to use any of the codes and styles if you like them :D!
+# Coli
+
+Portfolio of Coli, full-stack developer: https://pedroacoli.github.io
+
+A single static page (`index.html`) with no build step. Fonts come from Google Fonts; everything else is inline.
