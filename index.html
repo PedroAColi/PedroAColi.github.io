@@ -55,7 +55,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 @keyframes fade{to{opacity:1}}
 
 /* navigation */
-.nav{position:fixed;top:0;left:0;right:0;z-index:120;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 4vw;color:#ECEAE3;mix-blend-mode:difference;pointer-events:none}
+.nav{position:fixed;top:0;left:0;right:0;z-index:120;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 4vw;color:#ECEAE3;mix-blend-mode:difference;pointer-events:none}
 .nav > *{pointer-events:auto}
 .nav-logo,.nav-logo-fill{position:fixed;top:14px;left:50%;width:56px;height:56px;margin-left:-28px;display:grid;place-items:center}
 .nav-logo{z-index:122;color:#ECEAE3;mix-blend-mode:difference}
@@ -99,7 +99,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* hero */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;padding:96px 4vw 0;overflow:hidden;overflow:clip}
-.hero-top{display:flex;justify-content:space-between;gap:24px;padding-bottom:16px;border-bottom:1px solid rgba(18,19,17,.16);color:#55544E}
+.hero-top{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:24px;padding-bottom:16px;border-bottom:1px solid rgba(18,19,17,.16);color:#55544E}
+.hero-top > :nth-child(2){justify-self:center}
+.hero-top > :nth-child(3){justify-self:end;text-align:right}
 .hero-mid{position:relative;flex-grow:1;display:flex;align-items:center;padding:44px 0 28px}
 .hero-intro{position:relative;z-index:3;max-width:520px;display:flex;flex-direction:column;gap:26px}
 .hero-lede{margin:0;font-size:clamp(20px,1.85vw,28px);line-height:1.22;font-weight:500}
@@ -500,6 +502,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .foot-col-main{grid-column:1 / -1}
 }
 @media (max-width:560px){
+.hero-top{display:flex;justify-content:space-between}
 .hero-top .hide-s{display:none}
 .feats{grid-template-columns:minmax(0,1fr)}
 .node b{font-size:12px}
@@ -1066,13 +1069,39 @@ html{scroll-behavior:auto}
       if (r.word) r.word.style.transform = 'translate3d(0,' + (st * 0.18).toFixed(1) + 'px,0)';
       // Fit the name to the content width (92vw) with its natural spacing; re-checked every frame,
       // so it also settles once the web font has loaded.
-      // The 3D stack shrinks when the space between the top row and the name is short (desktop only;
-      // phones use the CSS scale).
+      // Place the 3D stack: centred both ways in the space right of the intro, scaled down only when
+      // that space is short. It is measured untransformed, and only when the layout changes and the
+      // pointer is not over the hero (hover lifts the plates). Phones use the CSS scale instead.
       if (r.stk && r.mid) {
-        const s = vw > 900 ? Math.max(0.55, Math.min(1, (r.mid.getBoundingClientRect().height + 40) / 480)) : 0;
-        if (s !== this._stkS) {
-          this._stkS = s;
-          r.stk.style.transform = s ? 'scale(' + s.toFixed(3) + ')' : '';
+        if (vw <= 900) {
+          if (this._stkKey !== 'phone') { this._stkKey = 'phone'; r.stk.style.transform = ''; }
+        } else {
+          const mid = r.mid.getBoundingClientRect();
+          const intro = r.mid.firstElementChild.getBoundingClientRect();
+          const key = [vw, vh, Math.round(mid.height), Math.round(intro.right)].join(':');
+          const hero = r.stk.closest('.hero');
+          if (key !== this._stkKey && !(hero && hero.matches(':hover'))) {
+            this._stkKey = key;
+            r.stk.style.transform = 'none';
+            const box = r.stk.getBoundingClientRect();
+            let top = Infinity, bottom = -Infinity, left = Infinity, right = -Infinity;
+            r.stk.querySelectorAll('.pl, .wire').forEach((el) => {
+              const b = el.getBoundingClientRect();
+              if (!b.width) return;
+              top = Math.min(top, b.top); bottom = Math.max(bottom, b.bottom);
+              left = Math.min(left, b.left); right = Math.max(right, b.right);
+            });
+            const availTop = mid.top + 44, availBottom = mid.bottom - 16;
+            const availLeft = intro.right + 40, availRight = mid.right;
+            const H = bottom - top, W = right - left;
+            const s = Math.max(0.55, Math.min(1, (availBottom - availTop) / H, (availRight - availLeft) / W));
+            // transform-origin is the top centre of the box.
+            const ox = box.left + box.width / 2, oy = box.top;
+            const vx = ox + ((left + right) / 2 - ox) * s, vy = oy + (top - oy) * s;
+            const dx = (availLeft + availRight) / 2 - vx;
+            const dy = (availTop + availBottom) / 2 - (H * s) / 2 - vy;
+            r.stk.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
+          }
         }
       }
       if (r.probe) {
