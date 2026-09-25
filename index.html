@@ -28,7 +28,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .site{position:relative;width:100%;min-height:100vh;background:#ECEAE3;color:#121311;overflow-x:clip}
 .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase}
 .ic{width:1em;height:1em;flex-shrink:0}
-.o{color:transparent;-webkit-text-stroke:1.5px currentColor}
+.o{color:transparent;-webkit-text-stroke:1.5px #121311}
+.ink .o,.half.on .o{-webkit-text-stroke-color:#ECEAE3}
 .rv{opacity:0;transform:translate3d(0,48px,0);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
 
@@ -425,29 +426,56 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .jr-head{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,2.4vw,32px);margin-bottom:clamp(40px,5vw,72px)}
 .jr-h{font-size:clamp(40px,8vw,140px)}
 .jr-head .notes-p{max-width:520px}
-.tl-wrap{position:relative;padding-left:clamp(36px,4vw,56px)}
-.tl-line{position:absolute;left:6px;top:0;bottom:0;width:1.5px;background:rgba(18,19,17,.16)}
-.tl-line i{position:absolute;inset:0;background:var(--accent,#FF5B1F);transform-origin:50% 0;transform:scaleY(0)}
-.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.tl-i{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;column-gap:clamp(40px,5vw,88px);padding:clamp(64px,9vw,140px) 0}
-.tl-i::before{content:'';position:absolute;left:calc(-1 * clamp(36px,4vw,56px) + 6px);top:calc(clamp(64px,9vw,140px) + 14px);width:13px;height:13px;margin-left:-5.75px;border-radius:50%;background:#ECEAE3;border:1.5px solid #121311;transition:background .6s,border-color .6s,transform .6s cubic-bezier(.2,.8,.2,1)}
-.tl-i.cur::before{background:var(--accent,#FF5B1F);border-color:var(--accent,#FF5B1F);transform:scale(1.3)}
-.tl-ym{position:relative;display:block;overflow:hidden;padding-top:.06em;font-weight:900;font-stretch:125%;font-size:clamp(80px,12vw,200px);line-height:.8;letter-spacing:-.02em;white-space:nowrap}
-.tl-ghost{display:block;visibility:hidden}
-.tl-y{position:absolute;left:0;top:.06em;display:block;color:transparent;-webkit-text-stroke:1.5px #121311;background-image:linear-gradient(to top,#121311 50%,transparent 50%);background-size:100% 200%;background-position:0 0;-webkit-background-clip:text;background-clip:text;transform:translateY(105%);font-stretch:62%;transition:transform 1.2s cubic-bezier(.2,.8,.2,1),font-stretch 1.2s cubic-bezier(.2,.8,.2,1),background-position 1.2s cubic-bezier(.65,.05,0,1)}
-.tl-i.in .tl-y{transform:none;font-stretch:125%}
-.tl-i.cur .tl-y{background-position:0 100%}
-.tl-b{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
-.tl-b > *{opacity:0;transform:translate3d(0,32px,0);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
-.tl-i.in .tl-b > *{opacity:1;transform:none}
-.tl-i.in .tl-b > :nth-child(1){transition-delay:.2s}
-.tl-i.in .tl-b > :nth-child(2){transition-delay:.3s}
-.tl-i.in .tl-b > :nth-child(3){transition-delay:.4s}
-.tl-i.in .tl-b > :nth-child(4){transition-delay:.5s}
-.tl-k{color:#55544E}
-.tl-t{margin:0;font-weight:800;font-stretch:112%;text-transform:uppercase;font-size:clamp(28px,3.2vw,52px);line-height:1}
-.tl-d{margin:0;font-size:clamp(16px,1.3vw,19px);line-height:1.45;color:#55544E}
-.tl-b .tools{margin-top:4px}
+.jc{--gut:clamp(84px,8.4vw,128px);position:relative}
+.jc-plot{position:relative;height:clamp(230px,38vh,420px);margin-top:clamp(84px,7vw,112px)}
+.jc-fig{position:absolute;inset:0}
+.jc-gl{position:absolute;left:0;right:0;height:0;border-top:1px dashed rgba(18,19,17,.18)}
+.jc-axis{position:absolute;left:0;right:0;bottom:0;height:0;border-top:1.5px solid #121311}
+.jc-y{position:absolute;right:0;width:var(--gut);box-sizing:border-box;padding-left:18px;font-size:11px;line-height:1.25;color:#55544E}
+.jc-y-top{top:0;transform:translateY(calc(-100% - 8px))}
+.jc-y-bot{bottom:8px}
+.jc-svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
+.jc-stop{stop-color:var(--accent,#FF5B1F)}
+.jc-ghost{fill:none;stroke:rgba(18,19,17,.24);stroke-width:1.5}
+.jc-ghost-n{stroke-dasharray:4 6}
+.jc-line{fill:none;stroke:var(--accent,#FF5B1F);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+.jc-line-n{stroke-dasharray:8 8;stroke-linecap:butt}
+.jc-cross{position:absolute;left:0;top:0;bottom:0;width:0;border-left:1px solid rgba(18,19,17,.2);opacity:0;will-change:transform}
+.jc-drop{position:absolute;left:0;top:0;width:0;height:0;border-left:1px dashed rgba(18,19,17,.3);transition:border-color .5s}
+.jc-drop.on{border-left-color:rgba(18,19,17,.7)}
+.jc-drop-n{border-left-style:dotted}
+.jc-pt{position:absolute;left:0;top:0;width:15px;height:15px;margin:-7.5px 0 0 -7.5px;box-sizing:border-box;border-radius:50%;background:#ECEAE3;border:1.5px solid #121311;z-index:2;transition:background .5s,transform .6s cubic-bezier(.2,.8,.2,1)}
+.jc-pt.on{background:var(--accent,#FF5B1F);transform:scale(1.2)}
+.jc-tag{display:none;position:absolute;right:calc(100% + 6px);bottom:calc(100% + 2px);font-style:normal;font-size:10px;color:#55544E;white-space:nowrap}
+.jc-p0 .jc-tag{right:auto;bottom:auto;left:0;top:calc(100% + 10px)}
+.jc-head{position:absolute;left:0;top:0;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:var(--accent,#FF5B1F);z-index:3;opacity:0;will-change:transform}
+.jc-head::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1.5px solid var(--accent,#FF5B1F);animation:jcp 1.8s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes jcp{0%{transform:scale(.35);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.jc-next{position:absolute;bottom:calc(100% + 16px);right:calc(var(--gut) + 24px);display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right;z-index:4}
+.jc-next .mono{font-size:11px;color:#55544E}
+.jc-next b{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-stretch:112%;text-transform:uppercase;font-size:clamp(18px,1.7vw,26px);line-height:1;padding-bottom:5px;border-bottom:1.5px solid var(--accent,#FF5B1F);transition:color .3s}
+.jc-next:hover b{color:var(--accent,#FF5B1F)}
+.jc-next .ic{width:.8em;height:.8em}
+.jc-cols{list-style:none;margin:clamp(32px,3.4vw,52px) var(--gut) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.jc-i{container-type:inline-size;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(18px,1.8vw,28px);padding-right:clamp(16px,2.6vw,44px)}
+.jc-ym{position:relative;display:block;overflow:hidden;padding-top:.06em;font-weight:900;font-stretch:125%;font-size:clamp(52px,27cqi,150px);line-height:.8;letter-spacing:-.02em;white-space:nowrap}
+.jc-ghost-y{display:block;visibility:hidden}
+.jc-yr{position:absolute;left:0;top:.06em;display:block;color:transparent;-webkit-text-stroke:1.5px #121311;background-image:linear-gradient(to top,#121311 50%,transparent 50%);background-size:100% 200%;background-position:0 0;-webkit-background-clip:text;background-clip:text;transform:translateY(105%);font-stretch:62%;transition:transform 1.2s cubic-bezier(.2,.8,.2,1),font-stretch 1.2s cubic-bezier(.2,.8,.2,1),background-position 1.1s cubic-bezier(.65,.05,0,1)}
+.jc-i.in .jc-yr{transform:none;font-stretch:125%}
+.jc-i.on .jc-yr{background-position:0 100%}
+.jc-b{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.jc-b > *{opacity:0;transform:translate3d(0,28px,0);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
+.jc-i.in .jc-b > *{opacity:1;transform:none}
+.jc-i.in .jc-b > :nth-child(1){transition-delay:.15s}
+.jc-i.in .jc-b > :nth-child(2){transition-delay:.25s}
+.jc-i.in .jc-b > :nth-child(3){transition-delay:.35s}
+.jc-i.in .jc-b > :nth-child(4){transition-delay:.45s}
+.jc-k{color:#55544E;transition:color .4s}
+.jc-t{margin:0;font-weight:800;font-stretch:112%;text-transform:uppercase;font-size:clamp(22px,8.6cqi,44px);line-height:1}
+.jc-d{margin:0;font-size:clamp(16px,1.2vw,18px);line-height:1.45;color:#55544E}
+.jc-b .tools{margin-top:4px}
+.jc:has(.jc-i0:hover) .jc-p0,.jc:has(.jc-i1:hover) .jc-p1,.jc:has(.jc-i2:hover) .jc-p2{transform:scale(1.6)}
+.jc-i:hover .jc-k{color:var(--accent,#FF5B1F)}
 
 /* contact */
 .foot{background:#121311;color:#ECEAE3;padding:clamp(88px,10vw,150px) 4vw 0;position:relative;overflow:hidden;overflow:clip}
@@ -498,10 +526,20 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .note-tag{grid-column:1 / -1}
 .note-a{width:48px;height:48px;grid-row:2;grid-column:2}
 .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
-.tl-i{grid-template-columns:minmax(0,1fr);row-gap:24px;padding:72px 0}
-.tl-i::before{top:84px}
 .foot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .foot-col-main{grid-column:1 / -1}
+}
+@media (max-width:760px){
+.jc{--gut:58px}
+.jc-plot{height:clamp(210px,32vh,280px);margin-top:84px}
+.jc-y{padding-left:12px;font-size:10px}
+.jc-tag{display:block}
+.jc-next b{font-size:18px}
+.jc-cols{grid-template-columns:minmax(0,1fr);margin:64px 0 0}
+.jc-i{padding:0 0 56px}
+.jc-i + .jc-i{padding-top:44px;border-top:1px solid rgba(18,19,17,.16)}
+.jc-ym{font-size:clamp(64px,24cqi,120px)}
+.jc-t{font-size:clamp(26px,8cqi,40px)}
 }
 @media (max-width:560px){
 .hero-top{display:flex;justify-content:space-between}
@@ -877,32 +915,43 @@ html{scroll-behavior:auto}
 <h2 class="big-h jr-h">My<br><span class="o">trajectory</span></h2>
 <p class="notes-p">From the first semester of Software Engineering to building with AI and AWS.</p>
 </div>
-<div class="tl-wrap" data-ref="rTl">
-<div class="tl-line" aria-hidden="true"><i data-ref="rTlFill"></i></div>
-<ol class="tl">
-<li class="tl-i">
-<span class="tl-ym"><span class="tl-ghost" aria-hidden="true">2024</span><span class="tl-y">2024</span></span>
-<div class="tl-b">
-<span class="mono tl-k">Degree</span>
-<h3 class="tl-t">Software Engineering</h3>
-<p class="tl-d">Bachelor's degree at FER - Faculdade de Engenharia de Resende.</p>
+<div class="jc" data-ref="rJc">
+<div class="jc-plot" data-ref="rJcPlot">
+<div class="jc-fig" aria-hidden="true">
+<span class="jc-gl" style="top: 0%"></span><span class="jc-gl" style="top: 25%"></span><span class="jc-gl" style="top: 50%"></span><span class="jc-gl" style="top: 75%"></span><span class="jc-axis"></span>
+<span class="jc-y jc-y-top mono">Full stack</span><span class="jc-y jc-y-bot mono">Scratch</span>
+<svg class="jc-svg" preserveAspectRatio="none"><defs><linearGradient id="jcg" x1="0" y1="0" x2="0" y2="1"><stop class="jc-stop" offset="0" stop-opacity="0.26"></stop><stop class="jc-stop" offset="1" stop-opacity="0"></stop></linearGradient><clipPath id="jcc"><rect class="jc-clip" x="-12" y="-12"></rect></clipPath></defs><path class="jc-ghost"></path><path class="jc-ghost jc-ghost-n"></path><g clip-path="url(#jcc)"><path class="jc-area" fill="url(#jcg)"></path><path class="jc-line"></path><path class="jc-line jc-line-n"></path></g></svg>
+<span class="jc-cross"></span>
+<span class="jc-drop"></span><span class="jc-drop"></span><span class="jc-drop"></span><span class="jc-drop jc-drop-n"></span>
+<span class="jc-pt jc-p0"><i class="jc-tag mono">2024</i></span><span class="jc-pt jc-p1"><i class="jc-tag mono">2025</i></span><span class="jc-pt jc-p2"><i class="jc-tag mono">2026</i></span><span class="jc-pt jc-p3"></span>
+<span class="jc-head"></span>
+</div>
+<a class="jc-next" href="#contact"><span class="mono">Next</span><b>Your project<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"></path></svg></b></a>
+</div>
+<ol class="jc-cols" data-ref="rJcCols">
+<li class="jc-i jc-i0">
+<span class="jc-ym"><span class="jc-ghost-y" aria-hidden="true">2024</span><span class="jc-yr">2024</span></span>
+<div class="jc-b">
+<span class="mono jc-k">Degree</span>
+<h3 class="jc-t">Software Engineering</h3>
+<p class="jc-d">Bachelor's degree at FER - Faculdade de Engenharia de Resende.</p>
 </div>
 </li>
-<li class="tl-i">
-<span class="tl-ym"><span class="tl-ghost" aria-hidden="true">2025</span><span class="tl-y">2025</span></span>
-<div class="tl-b">
-<span class="mono tl-k">Courses</span>
-<h3 class="tl-t">Python and Java</h3>
-<p class="tl-d">Alura.</p>
+<li class="jc-i jc-i1">
+<span class="jc-ym"><span class="jc-ghost-y" aria-hidden="true">2025</span><span class="jc-yr">2025</span></span>
+<div class="jc-b">
+<span class="mono jc-k">Courses</span>
+<h3 class="jc-t">Python and Java</h3>
+<p class="jc-d">Alura.</p>
 <ul class="tools"><li><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"></path></svg>Python</li><li><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.915 0 11.7.215C9.515 2.4 7.47 6.39 6.046 10.483c-1.064 1.024-3.633 2.81-3.711 3.551-.093.87 1.746 2.611 1.55 3.235-.198.625-1.304 1.408-1.014 1.939.1.188.823.011 1.277-.491a13.389 13.389 0 0 0-.017 2.14c.076.906.27 1.668.643 2.232.372.563.956.911 1.667.911.397 0 .727-.114 1.024-.264.298-.149.571-.33.91-.5.68-.34 1.634-.666 3.53-.604 1.903.062 2.872.39 3.559.704.687.314 1.15.664 1.925.664.767 0 1.395-.336 1.807-.9.412-.563.631-1.33.72-2.24.06-.623.055-1.32 0-2.066.454.45 1.117.604 1.213.424.29-.53-.816-1.314-1.013-1.937-.198-.624 1.642-2.366 1.549-3.236-.08-.748-2.707-2.568-3.748-3.586C16.428 6.374 14.308 2.394 12.13.215zm.175 6.038a2.95 2.95 0 0 1 2.943 2.942 2.95 2.95 0 0 1-2.943 2.943A2.95 2.95 0 0 1 9.148 8.98a2.95 2.95 0 0 1 2.942-2.942zM8.685 7.983a3.515 3.515 0 0 0-.145.997c0 1.951 1.6 3.55 3.55 3.55 1.95 0 3.55-1.598 3.55-3.55 0-.329-.046-.648-.132-.951.334.095.64.208.915.336a42.699 42.699 0 0 1 2.042 5.829c.678 2.545 1.01 4.92.846 6.607-.082.844-.29 1.51-.606 1.94-.315.431-.713.651-1.315.651-.593 0-.932-.27-1.673-.61-.741-.338-1.825-.694-3.792-.758-1.974-.064-3.073.293-3.821.669-.375.188-.659.373-.911.5s-.466.2-.752.2c-.53 0-.876-.209-1.16-.64-.285-.43-.474-1.101-.545-1.948-.141-1.693.176-4.069.823-6.614a43.155 43.155 0 0 1 1.934-5.783c.348-.167.749-.31 1.192-.425zm-3.382 4.362a.216.216 0 0 1 .13.031c-.166.56-.323 1.116-.463 1.665a33.849 33.849 0 0 0-.547 2.555 3.9 3.9 0 0 0-.2-.39c-.58-1.012-.914-1.642-1.16-2.08.315-.24 1.679-1.755 2.24-1.781zm13.394.01c.562.027 1.926 1.543 2.24 1.783-.246.438-.58 1.068-1.16 2.08a4.428 4.428 0 0 0-.163.309 32.354 32.354 0 0 0-.562-2.49 40.579 40.579 0 0 0-.482-1.652.216.216 0 0 1 .127-.03z"></path></svg>Java</li></ul>
 </div>
 </li>
-<li class="tl-i">
-<span class="tl-ym"><span class="tl-ghost" aria-hidden="true">2026</span><span class="tl-y">2026</span></span>
-<div class="tl-b">
-<span class="mono tl-k">Courses</span>
-<h3 class="tl-t">AI, databases and AWS Cloud</h3>
-<p class="tl-d">Bradesco, Alura and AWS Academy.</p>
+<li class="jc-i jc-i2">
+<span class="jc-ym"><span class="jc-ghost-y" aria-hidden="true">2026</span><span class="jc-yr">2026</span></span>
+<div class="jc-b">
+<span class="mono jc-k">Courses</span>
+<h3 class="jc-t">AI, databases and AWS Cloud</h3>
+<p class="jc-d">Bradesco, Alura and AWS Academy.</p>
 <ul class="tools"><li><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.1 6.4 6.4 2.1-6.4 2.1-2.1 6.4-2.1-6.4-6.4-2.1 6.4-2.1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>Building with AI</li><li><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"></ellipse><path d="M4.5 5.5v13c0 1.55 3.36 2.8 7.5 2.8s7.5-1.25 7.5-2.8v-13M4.5 12c0 1.55 3.36 2.8 7.5 2.8s7.5-1.25 7.5-2.8"></path></g></svg>Databases</li><li><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 19h10.5a4.5 4.5 0 0 0 .6-8.96A6.5 6.5 0 0 0 5.6 9.2 5 5 0 0 0 7 19z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>AWS Cloud</li></ul>
 </div>
 </li>
@@ -1042,18 +1091,7 @@ html{scroll-behavior:auto}
       const maxS = Math.max(1, se.scrollHeight - vh);
   
       if (r.dot) r.dot.style.top = (Math.min(1, st / maxS) * 100).toFixed(2) + '%';
-      if (r.tl) {
-        const tr = r.tl.getBoundingClientRect();
-        const mark = vh * 0.62;
-        const tp = Math.min(1, Math.max(0, (mark - tr.top) / Math.max(1, tr.height)));
-        if (r.tlFill) r.tlFill.style.transform = 'scaleY(' + tp.toFixed(4) + ')';
-        const items = r.tl.querySelectorAll('.tl-i');
-        for (let i = 0; i < items.length; i++) {
-          const it = items[i].getBoundingClientRect().top;
-          if (it < vh * 0.85) items[i].classList.add('in');
-          items[i].classList.toggle('cur', it + 120 < mark);
-        }
-      }
+      if (r.jcPlot) this._journey(vw, vh);
       if (r.word) r.word.style.transform = 'translate3d(0,' + (st * 0.18).toFixed(1) + 'px,0)';
       // Fit the name to the content width (92vw) with its natural spacing; re-checked every frame,
       // so it also settles once the web font has loaded.
@@ -1145,6 +1183,131 @@ html{scroll-behavior:auto}
         for (let i = 0; i < els.length; i++) {
           if (els[i].getBoundingClientRect().top < vh * 0.88) els[i].classList.add('in');
         }
+      }
+    }
+  
+    // Journey chart. On a layout change it rebuilds the curve (monotone cubic through the four
+    // points) in pixels; every frame it eases the drawn length towards the scroll position.
+    _journey(vw, vh) {
+      const r = this._r;
+      const plot = r.jcPlot;
+      const W = plot.clientWidth, H = plot.clientHeight;
+      if (W < 2 || H < 2) return;
+      const narrow = vw <= 760;
+      const yTop = plot.querySelector('.jc-y-top');
+      const x3 = yTop ? yTop.offsetLeft : W * 0.9;
+      const gap = r.jcCols ? r.jcCols.offsetTop - (plot.offsetTop + H) : 0;
+      const key = [W, H, Math.round(x3), narrow ? 0 : Math.round(gap)].join(':');
+      let g = this._jc;
+      if (!g || g.key !== key || g.svg.getAttribute('viewBox') !== g.vb) {
+        const q = (s) => plot.querySelector(s);
+        const qa = (s) => Array.prototype.slice.call(plot.querySelectorAll(s));
+        g = this._jc = {
+          key, x3, svg: q('.jc-svg'), clip: q('.jc-clip'), head: q('.jc-head'), cross: q('.jc-cross'),
+          pts: qa('.jc-pt'), drops: qa('.jc-drop'),
+          items: r.jcCols ? Array.prototype.slice.call(r.jcCols.querySelectorAll('.jc-i')) : [],
+          e: this._jc ? this._jc.e : 0, last: -1,
+        };
+        const vals = [0, 0.22, 0.52, 1];
+        const P = vals.map((v, i) => [(x3 * i) / 3, H * (1 - v)]);
+        const n = P.length, d = [], m = [];
+        for (let i = 0; i < n - 1; i++) d.push((P[i + 1][1] - P[i][1]) / (P[i + 1][0] - P[i][0]));
+        m[0] = d[0]; m[n - 1] = d[n - 2];
+        for (let i = 1; i < n - 1; i++) m[i] = d[i - 1] * d[i] <= 0 ? 0 : (d[i - 1] + d[i]) / 2;
+        for (let i = 0; i < n - 1; i++) {
+          const al = m[i] / d[i], be = m[i + 1] / d[i], s = al * al + be * be;
+          if (s > 9) { const t = 3 / Math.sqrt(s); m[i] = t * al * d[i]; m[i + 1] = t * be * d[i]; }
+        }
+        const f = (p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+        const seg = [], look = [];
+        for (let i = 0; i < n - 1; i++) {
+          const h = P[i + 1][0] - P[i][0];
+          const c1 = [P[i][0] + h / 3, P[i][1] + (m[i] * h) / 3];
+          const c2 = [P[i + 1][0] - h / 3, P[i + 1][1] - (m[i + 1] * h) / 3];
+          seg.push('C ' + f(c1) + ' ' + f(c2) + ' ' + f(P[i + 1]));
+          for (let k = 0; k <= 32; k++) {
+            const t = k / 32, u = 1 - t;
+            const A = u * u * u, B = 3 * u * u * t, C = 3 * u * t * t, D = t * t * t;
+            look.push([A * P[i][0] + B * c1[0] + C * c2[0] + D * P[i + 1][0], A * P[i][1] + B * c1[1] + C * c2[1] + D * P[i + 1][1]]);
+          }
+        }
+        g.look = look;
+        g.xs = P.map((p) => p[0]);
+        const solid = 'M ' + f(P[0]) + ' ' + seg[0] + ' ' + seg[1];
+        const next = 'M ' + f(P[2]) + ' ' + seg[2];
+        g.vb = '0 0 ' + W + ' ' + H;
+        g.svg.setAttribute('viewBox', g.vb);
+        const paths = g.svg.querySelectorAll('path');
+        paths[0].setAttribute('d', solid);
+        paths[1].setAttribute('d', next);
+        paths[2].setAttribute('d', solid + ' L ' + f([P[2][0], H]) + ' L ' + f([0, H]) + ' Z');
+        paths[3].setAttribute('d', solid);
+        paths[4].setAttribute('d', next);
+        g.clip.setAttribute('height', String(H + 24));
+        // Desktop: the drop lines run on past the axis to the year below.
+        const ext = narrow ? 0 : Math.max(0, gap - 10);
+        P.forEach((p, i) => {
+          if (g.pts[i]) { g.pts[i].style.left = p[0].toFixed(1) + 'px'; g.pts[i].style.top = p[1].toFixed(1) + 'px'; }
+          const dr = g.drops[i];
+          if (dr) {
+            dr.style.left = p[0].toFixed(1) + 'px';
+            dr.style.top = p[1].toFixed(1) + 'px';
+            dr.style.height = Math.max(0, H - p[1] + (i < 3 ? ext : 0)).toFixed(1) + 'px';
+          }
+        });
+        g.last = -1;
+      }
+  
+      const now = performance.now();
+      const dt = Math.min(64, Math.max(0, now - (g.t || now)));
+      g.t = now;
+      const pr = plot.getBoundingClientRect();
+      let target;
+      if (this._reduce) {
+        target = pr.top < vh ? 1 : 0;
+      } else if (narrow) {
+        target = (vh * 0.85 - pr.top) / (H + vh * 0.3);
+      } else {
+        // The line finishes as the columns under it come fully into view.
+        const span = (r.jcCols ? r.jcCols.getBoundingClientRect().bottom : pr.bottom) - pr.top;
+        target = (vh * 0.85 - pr.top) / Math.max(vh * 0.4, span - vh * 0.07);
+      }
+      target = Math.min(1, Math.max(0, target));
+      let e = g.e;
+      e = this._reduce ? target : e + (target - e) * (1 - Math.pow(0.86, dt / 16.7));
+      if (Math.abs(target - e) < 0.0004) e = target;
+      g.e = e;
+      const live = e > 0.001;
+      const hx = e * g.x3;
+      // Phones stack the columns far below the chart, so each one also waits for its own scroll.
+      for (let i = 0; i < g.items.length; i++) {
+        const it = g.items[i];
+        if (it.classList.contains('in') || !live || hx < g.xs[i] - 0.5) continue;
+        if (!narrow || it.getBoundingClientRect().top < vh * 0.88) it.classList.add('in');
+      }
+      if (e === g.last) return;
+      g.last = e;
+  
+      const L = g.look;
+      let hy = L[0][1];
+      for (let i = 1; i < L.length; i++) {
+        if (L[i][0] >= hx) {
+          const a = L[i - 1], b = L[i], w = b[0] - a[0];
+          hy = w > 0 ? a[1] + ((hx - a[0]) / w) * (b[1] - a[1]) : b[1];
+          break;
+        }
+        hy = L[i][1];
+      }
+      g.clip.setAttribute('width', (hx + 12).toFixed(1));
+      g.head.style.opacity = live ? '1' : '0';
+      g.head.style.transform = 'translate(' + hx.toFixed(1) + 'px,' + hy.toFixed(1) + 'px)';
+      g.cross.style.opacity = live && e < 0.999 ? '1' : '0';
+      g.cross.style.transform = 'translateX(' + hx.toFixed(1) + 'px)';
+      for (let i = 0; i < g.xs.length; i++) {
+        const on = live && hx >= g.xs[i] - 0.5;
+        if (g.pts[i]) g.pts[i].classList.toggle('on', on);
+        if (g.drops[i]) g.drops[i].classList.toggle('on', on);
+        if (g.items[i]) g.items[i].classList.toggle('on', on);
       }
     }
   
@@ -1326,7 +1489,7 @@ html{scroll-behavior:auto}
       };
       this._hs = {
         rRoot: ref('root'), rWrap: ref('wrap'), rTrack: ref('track'), rBar: ref('bar'),
-        rManif: ref('manif'), rWord: ref('word'), rTilt: ref('tilt'), rDot: ref('dot'), rTl: ref('tl'), rTlFill: ref('tlFill'), rProbe: ref('probe'), rBig: ref('big'), rMid: ref('mid'), rStk: ref('stk'),
+        rManif: ref('manif'), rWord: ref('word'), rTilt: ref('tilt'), rDot: ref('dot'), rJc: ref('jc'), rJcPlot: ref('jcPlot'), rJcCols: ref('jcCols'), rProbe: ref('probe'), rBig: ref('big'), rMid: ref('mid'), rStk: ref('stk'),
         toggleMenu: () => this.setState({ menu: !(this.state && this.state.menu) }),
         closeMenu: () => this.setState({ menu: false }),
         hoverFront: () => this.setState({ side: 'front' }),
