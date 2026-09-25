@@ -113,7 +113,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .now-d{font-size:14px;line-height:1.3}
 .now-a{margin-left:auto;flex-shrink:0;width:46px;height:46px;border-radius:50%;background:var(--accent,#FF5B1F);color:#121311;display:grid;place-items:center;font-size:18px;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
 .now:hover .now-a{transform:rotate(-45deg)}
-.stk{position:absolute;right:calc(4vw + 190px);top:50%;width:320px;height:440px;margin-top:-250px;perspective:1800px;z-index:2}
+.stk{position:absolute;right:calc(4vw + 240px);top:28px;width:320px;height:440px;perspective:1800px;z-index:2;transform-origin:50% 0}
 .stk-tilt{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
 .stk-iso{position:absolute;left:10px;top:160px;width:300px;height:300px;transform-style:preserve-3d;transform:rotateX(57deg) rotateZ(-43deg)}
 .pl{position:absolute;inset:0;border:1.5px solid #121311;border-radius:8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
@@ -121,7 +121,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .pl-2{transform:translateZ(156px);background:#121311;color:#ECEAE3}
 .pl-3{transform:translateZ(78px);background:#ECEAE3}
 .pl-4{transform:translateZ(0);background:#D9D6CC;border-style:dashed}
-.hero:hover .pl-1{transform:translateZ(318px)}
+.hero:hover .pl-1{transform:translateZ(270px)}
 .hero:hover .pl-2{transform:translateZ(212px)}
 .hero:hover .pl-3{transform:translateZ(106px)}
 .pl-lab{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
@@ -136,7 +136,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .pl-db{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
 .pl-db i{height:14px;border:1px solid rgba(18,19,17,.45);border-radius:3px}
 .pl-db i:nth-child(-n+4){background:#121311;border-color:#121311}
-.wire{position:absolute;left:calc(100% + 64px);top:36px;height:340px;width:130px;display:flex;flex-direction:column;justify-content:space-between;padding-left:22px;border-left:1.5px dashed rgba(18,19,17,.45)}
+.wire{position:absolute;left:calc(100% + 110px);top:36px;height:340px;width:130px;display:flex;flex-direction:column;justify-content:space-between;padding-left:22px;border-left:1.5px dashed rgba(18,19,17,.45)}
 .wire span{position:relative;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;line-height:1}
 .wire span::before{content:'';position:absolute;left:-28px;top:50%;width:9px;height:9px;margin-top:-5.5px;border-radius:50%;background:#ECEAE3;border:1.5px solid #121311}
 .pkt{position:absolute;left:-8.5px;top:0;width:15px;height:15px;border-radius:50%;background:var(--accent,#FF5B1F);border:1.5px solid #121311;animation:pkt 3.6s cubic-bezier(.65,0,.35,1) infinite}
@@ -475,7 +475,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .nav-menu{display:inline-flex}
 .hero{padding-top:84px}
 .hero-mid{flex-direction:column;align-items:stretch;gap:12px;padding-top:24px}
-.stk{position:relative;right:auto;top:auto;margin:-70px auto -110px;transform:scale(.62);flex-shrink:0}
+.stk{position:relative;right:auto;top:auto;margin:-70px auto -110px;transform:scale(.62);transform-origin:50% 50%;flex-shrink:0}
 .hero-intro{max-width:none}
 .about-q{grid-template-columns:minmax(0,1fr)}
 .split{flex-direction:column;height:auto}
@@ -580,7 +580,7 @@ html{scroll-behavior:auto}
 <span class="hide-s">Portfolio 2026</span>
 <span>From scratch, to a full project</span>
 </div>
-<div class="hero-mid">
+<div class="hero-mid" data-ref="rMid">
 <div class="hero-intro hero-fade">
 <p class="hero-lede">From the first screen to the last query: I build the interface, the API and the database of your product.</p>
 <div class="btns">
@@ -596,7 +596,7 @@ html{scroll-behavior:auto}
 <span class="now-a"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"></path></svg></span>
 </a>
 </div>
-<div class="stk hero-fade" aria-hidden="true">
+<div class="stk hero-fade" data-ref="rStk" aria-hidden="true">
 <div class="stk-tilt" data-ref="rTilt">
 <div class="stk-iso">
 <div class="pl pl-4"><span></span><span class="pl-lab"><span>04</span><span>Infra</span></span></div>
@@ -883,7 +883,7 @@ html{scroll-behavior:auto}
 <div class="tl-b">
 <span class="mono tl-k">Degree</span>
 <h3 class="tl-t">Software Engineering</h3>
-<p class="tl-d">Bachelor's degree at [FER - Faculdade de Engenharia de Resende].</p>
+<p class="tl-d">Bachelor's degree at FER - Faculdade de Engenharia de Resende.</p>
 </div>
 </li>
 <li class="tl-i">
@@ -891,7 +891,7 @@ html{scroll-behavior:auto}
 <div class="tl-b">
 <span class="mono tl-k">Courses</span>
 <h3 class="tl-t">Python and Java</h3>
-<p class="tl-d">[Alura].</p>
+<p class="tl-d">Alura.</p>
 <ul class="tools"><li><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"></path></svg>Python</li><li><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.915 0 11.7.215C9.515 2.4 7.47 6.39 6.046 10.483c-1.064 1.024-3.633 2.81-3.711 3.551-.093.87 1.746 2.611 1.55 3.235-.198.625-1.304 1.408-1.014 1.939.1.188.823.011 1.277-.491a13.389 13.389 0 0 0-.017 2.14c.076.906.27 1.668.643 2.232.372.563.956.911 1.667.911.397 0 .727-.114 1.024-.264.298-.149.571-.33.91-.5.68-.34 1.634-.666 3.53-.604 1.903.062 2.872.39 3.559.704.687.314 1.15.664 1.925.664.767 0 1.395-.336 1.807-.9.412-.563.631-1.33.72-2.24.06-.623.055-1.32 0-2.066.454.45 1.117.604 1.213.424.29-.53-.816-1.314-1.013-1.937-.198-.624 1.642-2.366 1.549-3.236-.08-.748-2.707-2.568-3.748-3.586C16.428 6.374 14.308 2.394 12.13.215zm.175 6.038a2.95 2.95 0 0 1 2.943 2.942 2.95 2.95 0 0 1-2.943 2.943A2.95 2.95 0 0 1 9.148 8.98a2.95 2.95 0 0 1 2.942-2.942zM8.685 7.983a3.515 3.515 0 0 0-.145.997c0 1.951 1.6 3.55 3.55 3.55 1.95 0 3.55-1.598 3.55-3.55 0-.329-.046-.648-.132-.951.334.095.64.208.915.336a42.699 42.699 0 0 1 2.042 5.829c.678 2.545 1.01 4.92.846 6.607-.082.844-.29 1.51-.606 1.94-.315.431-.713.651-1.315.651-.593 0-.932-.27-1.673-.61-.741-.338-1.825-.694-3.792-.758-1.974-.064-3.073.293-3.821.669-.375.188-.659.373-.911.5s-.466.2-.752.2c-.53 0-.876-.209-1.16-.64-.285-.43-.474-1.101-.545-1.948-.141-1.693.176-4.069.823-6.614a43.155 43.155 0 0 1 1.934-5.783c.348-.167.749-.31 1.192-.425zm-3.382 4.362a.216.216 0 0 1 .13.031c-.166.56-.323 1.116-.463 1.665a33.849 33.849 0 0 0-.547 2.555 3.9 3.9 0 0 0-.2-.39c-.58-1.012-.914-1.642-1.16-2.08.315-.24 1.679-1.755 2.24-1.781zm13.394.01c.562.027 1.926 1.543 2.24 1.783-.246.438-.58 1.068-1.16 2.08a4.428 4.428 0 0 0-.163.309 32.354 32.354 0 0 0-.562-2.49 40.579 40.579 0 0 0-.482-1.652.216.216 0 0 1 .127-.03z"></path></svg>Java</li></ul>
 </div>
 </li>
@@ -900,7 +900,7 @@ html{scroll-behavior:auto}
 <div class="tl-b">
 <span class="mono tl-k">Courses</span>
 <h3 class="tl-t">AI, databases and AWS Cloud</h3>
-<p class="tl-d">[Bradesco, Alura, Aws academy].</p>
+<p class="tl-d">Bradesco, Alura and AWS Academy.</p>
 <ul class="tools"><li><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.1 6.4 6.4 2.1-6.4 2.1-2.1 6.4-2.1-6.4-6.4-2.1 6.4-2.1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>Building with AI</li><li><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"></ellipse><path d="M4.5 5.5v13c0 1.55 3.36 2.8 7.5 2.8s7.5-1.25 7.5-2.8v-13M4.5 12c0 1.55 3.36 2.8 7.5 2.8s7.5-1.25 7.5-2.8"></path></g></svg>Databases</li><li><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 19h10.5a4.5 4.5 0 0 0 .6-8.96A6.5 6.5 0 0 0 5.6 9.2 5 5 0 0 0 7 19z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>AWS Cloud</li></ul>
 </div>
 </li>
@@ -922,7 +922,7 @@ html{scroll-behavior:auto}
 <div class="foot-col foot-col-main">
 <p class="foot-lede">Tell me the problem. I take care of the layers.</p>
 <div class="mail-row">
-<a class="mail" href="mailto:Colidev@gmail.com">pcoli.dev@gmail.com</a>
+<a class="mail" href="mailto:pcoli.dev@gmail.com">pcoli.dev@gmail.com</a>
 <button class="btn btn-light" type="button" data-on-click="copyMail"><span data-text="copyLabel"></span></button>
 </div>
 </div>
@@ -1055,13 +1055,23 @@ html{scroll-behavior:auto}
       if (r.word) r.word.style.transform = 'translate3d(0,' + (st * 0.18).toFixed(1) + 'px,0)';
       // Fit the name to the content width (92vw) with its natural spacing; re-checked every frame,
       // so it also settles once the web font has loaded.
+      // The 3D stack shrinks when the space between the top row and the name is short (desktop only;
+      // phones use the CSS scale).
+      if (r.stk && r.mid) {
+        const s = vw > 900 ? Math.max(0.55, Math.min(1, (r.mid.getBoundingClientRect().height + 40) / 480)) : 0;
+        if (s !== this._stkS) {
+          this._stkS = s;
+          r.stk.style.transform = s ? 'scale(' + s.toFixed(3) + ')' : '';
+        }
+      }
       if (r.probe) {
         const pw = r.probe.getBoundingClientRect().width;
         if (pw > 0) {
           const size = Math.round((vw * 0.92 / pw) * 1000) / 10;
           if (size !== this._nameSize) {
             this._nameSize = size;
-            if (r.word) r.word.style.fontSize = size + 'px';
+            // In the hero the name also stays under half the screen height, so wide, short screens keep room above it.
+            if (r.word) r.word.style.fontSize = Math.min(size, Math.round(vh * 5) / 10) + 'px';
             if (r.big) r.big.style.fontSize = size + 'px';
           }
         }
@@ -1284,7 +1294,7 @@ html{scroll-behavior:auto}
       };
       this._hs = {
         rRoot: ref('root'), rWrap: ref('wrap'), rTrack: ref('track'), rBar: ref('bar'),
-        rManif: ref('manif'), rWord: ref('word'), rTilt: ref('tilt'), rDot: ref('dot'), rTl: ref('tl'), rTlFill: ref('tlFill'), rProbe: ref('probe'), rBig: ref('big'),
+        rManif: ref('manif'), rWord: ref('word'), rTilt: ref('tilt'), rDot: ref('dot'), rTl: ref('tl'), rTlFill: ref('tlFill'), rProbe: ref('probe'), rBig: ref('big'), rMid: ref('mid'), rStk: ref('stk'),
         toggleMenu: () => this.setState({ menu: !(this.state && this.state.menu) }),
         closeMenu: () => this.setState({ menu: false }),
         hoverFront: () => this.setState({ side: 'front' }),
@@ -1305,7 +1315,7 @@ html{scroll-behavior:auto}
             this._tc = setTimeout(() => this.setState({ copied: '' }), 2000);
           };
           try {
-            navigator.clipboard.writeText('Colidev@gmail.com').then(() => settle(true), () => settle(false));
+            navigator.clipboard.writeText('pcoli.dev@gmail.com').then(() => settle(true), () => settle(false));
           } catch (e) { settle(false); }
         },
         replay: () => { this.setState({ menu: false }); this.startIntro(); },
