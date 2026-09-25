@@ -75,12 +75,21 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .nav-links a::after{content:'';position:absolute;left:0;right:0;bottom:8px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
 .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
 .nav-menu{display:none;margin-left:auto;align-items:center;min-height:44px;padding:0 20px;border:1.5px solid currentColor;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
-.cta-fixed{position:fixed;top:18px;right:4vw;z-index:121}
+.cta-fixed{position:fixed;top:18px;right:4vw;z-index:121;display:flex;align-items:center;gap:10px}
+.lang{position:relative;display:inline-flex;align-items:stretch;height:48px;padding:4px;border-radius:999px;background:#121311;border:1.5px solid rgba(236,234,227,.22);color:#ECEAE3}
+.lang::before{content:'';position:absolute;top:4px;bottom:4px;left:4px;width:42px;border-radius:999px;background:#ECEAE3;transition:transform .5s cubic-bezier(.65,.05,0,1)}
+.lang.is-pt::before{transform:translateX(42px)}
+.lang-b{position:relative;z-index:1;width:42px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;transition:color .35s}
+.lang-b[aria-pressed="true"]{color:#121311;cursor:default}
+.lang-b[aria-pressed="false"]:hover{color:var(--accent,#FF5B1F)}
+.lang-m{display:none}
+.site[data-lang="pt"] .l-en,.site:not([data-lang="pt"]) .l-pt{display:none !important}
 .menu{position:fixed;inset:0;z-index:115;background:#121311;color:#ECEAE3;display:flex;flex-direction:column;justify-content:space-between;padding:110px 6vw 32px;animation:menuIn .55s cubic-bezier(.76,0,.24,1) both}
 @keyframes menuIn{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
 .menu-links{display:flex;flex-direction:column;gap:6px}
 .menu-links a{font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:clamp(44px,13vw,96px);line-height:.95;letter-spacing:-.02em}
 .menu-links a:hover{color:var(--accent,#FF5B1F)}
+.site[data-lang="pt"] .menu-links a{font-size:clamp(30px,9.6vw,96px)}
 .prog{position:fixed;right:20px;top:50%;height:240px;margin-top:-120px;z-index:110;mix-blend-mode:difference;color:#ECEAE3;display:flex;flex-direction:row-reverse;gap:12px;pointer-events:none}
 .prog-line{position:relative;width:1.5px;background:rgba(236,234,227,.45)}
 .prog-dot{position:absolute;left:-4.5px;top:0;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:#ECEAE3}
@@ -502,11 +511,17 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 @media (max-width:1100px){
 .stk{right:calc(4vw + 120px)}
 .wire{display:none}
-.nav-links{gap:20px}
+.nav-links{gap:16px}
+.nav-links a{letter-spacing:.06em}
 }
 @media (max-width:900px){
 .nav-links,.cta-fixed,.prog{display:none}
 .nav-menu{display:inline-flex}
+.lang-m{display:inline-flex;height:44px;padding:3px;background:transparent;border-color:currentColor;color:inherit}
+.lang-m::before{top:3px;bottom:3px;left:3px;width:40px;background:currentColor}
+.lang-m.is-pt::before{transform:translateX(40px)}
+.lang-m .lang-b{width:40px}
+.lang-m .lang-b[aria-pressed="false"]:hover{color:inherit}
 .hero{padding-top:84px}
 .hero-mid{flex-direction:column;align-items:stretch;gap:12px;padding-top:24px}
 .stk{position:relative;right:auto;top:auto;margin:-70px auto -110px;transform:scale(.62);transform-origin:50% 50%;flex-shrink:0}
@@ -564,7 +579,7 @@ html{scroll-behavior:auto}
 </style>
 </head>
 <body>
-<div class="site" data-ref="rRoot" style="--accent: #FF5B1F">
+<div class="site" data-ref="rRoot" data-lang="" data-attr-data-lang="lang" style="--accent: #FF5B1F">
 <span class="fit-probe" data-ref="rProbe" aria-hidden="true">COLI</span>
 
 <div data-if="showLoader">
@@ -588,11 +603,12 @@ html{scroll-behavior:auto}
 <a href="#journey">Journey</a>
 <a href="#contact">Contact</a>
 </nav>
+<div class="lang lang-m" data-class-base="lang lang-m" data-class="langCls" role="group" aria-label="Language"><button type="button" class="lang-b" data-on-click="setEn" aria-pressed="" data-attr-aria-pressed="enPressed">EN</button><button type="button" class="lang-b" data-on-click="setPt" aria-pressed="" data-attr-aria-pressed="ptPressed">PT</button></div>
 <button class="nav-menu" type="button" data-on-click="toggleMenu" aria-expanded="" data-attr-aria-expanded="menuExpanded"><span data-text="menuLabel"></span></button>
 </header>
 <a class="nav-logo" href="#top" aria-label="Coli, back to the top"><svg viewBox="0 0 122.75 120" aria-hidden="true"><path fill="currentColor" d="M18.7,24c2.82,-13.25 15.85,-24 29.1,-24h31c13.25,0 21.72,10.75 18.9,24l-6.38,30c-2.75,12.92 -15.19,23.46 -28.1,23.98l3.41,-16.04c4.05,-0.49 7.82,-3.86 8.69,-7.94l6.38,-30c0.94,-4.42 -1.88,-8 -6.3,-8h-31c-4.42,0 -8.76,3.58 -9.7,8l-8.08,38h12l-3.4,16h-12l-3.830,18l-19.4,16zM97.75,52l3.4,-16h9l12.6,16zM61.2,59.31l-7.94,37.37l5.76,7.31l52.69,0l-19.4,16h-43.31l-13.14,-16.69l10.76,-50.63l20.23,-16.69l6.31,0l-3.47,16.31z"></path></svg></a>
 <span class="nav-logo-fill" aria-hidden="true"><svg viewBox="0 0 122.75 120" aria-hidden="true"><g transform="translate(23.806 0) skewX(-12)" fill="none" stroke-linejoin="miter" stroke-linecap="butt"><clipPath id="nlT"><polygon points="-30,-30 150,-30 150,28 86,28 136,78 74,140 24,140 24,88 -28,140 -30,140"></polygon></clipPath><mask id="nlMP" maskUnits="userSpaceOnUse" x="-40" y="-40" width="220" height="220"><rect x="-40" y="-40" width="220" height="220" fill="#fff"></rect><path d="M 110 44 H 54 L 42 56 V 100 L 54 112 H 110" stroke="#000" stroke-width="28"></path><rect x="57" y="24" width="120" height="38" fill="#fff"></rect></mask><mask id="nlMC" maskUnits="userSpaceOnUse" x="-40" y="-40" width="220" height="220"><rect x="-40" y="-40" width="220" height="220" fill="#fff"></rect><rect x="57" y="35" width="28" height="17.5" fill="#000"></rect></mask><g clip-path="url(#nlT)" stroke="currentColor" stroke-width="16"><path class="lg lg-p" mask="url(#nlMP)" d="M 8 112 V 24 A 16 16 0 0 1 24 8 H 55 A 16 16 0 0 1 71 24 V 54 A 16 16 0 0 1 55 70 H 8"></path><path class="lg lg-c" mask="url(#nlMC)" d="M 110 44 H 54 L 42 56 V 100 L 54 112 H 110"></path></g></g></svg></span>
-<a class="btn btn-acc cta-fixed" href="#contact">Start a project<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"></path></svg></a>
+<div class="cta-fixed"><div class="lang" data-class-base="lang" data-class="langCls" role="group" aria-label="Language"><button type="button" class="lang-b" data-on-click="setEn" aria-pressed="" data-attr-aria-pressed="enPressed">EN</button><button type="button" class="lang-b" data-on-click="setPt" aria-pressed="" data-attr-aria-pressed="ptPressed">PT</button></div><a class="btn btn-acc" href="#contact">Start a project<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"></path></svg></a></div>
 
 <div data-if="menuOpen" hidden>
 <div class="menu">
@@ -680,7 +696,10 @@ html{scroll-behavior:auto}
 <h2 class="q-h">Coli, 20 yo</h2>
 <p class="q-p">I am a Software Engineering student, really excited to start my professional career in software development.</p>
 </div>
-<p class="manif" data-ref="rManif"><span class="w">I</span> <span class="w">work</span> <span class="w">on</span> <span class="w">every</span> <span class="w">layer.</span> <span class="w">I</span> <span class="w">design</span> <span class="w">the</span> <span class="w k">interface,</span> <span class="w">write</span> <span class="w">the</span> <span class="w k">API,</span> <span class="w">model</span> <span class="w">the</span> <span class="w k">database</span> <span class="w">and</span> <span class="w">put</span> <span class="w">it</span> <span class="w k">online.</span> <span class="w">You</span> <span class="w">talk</span> <span class="w">to</span> <span class="w">one</span> <span class="w">person</span> <span class="w">from</span> <span class="w">the</span> <span class="w">first</span> <span class="w">screen</span> <span class="w">to</span> <span class="w">the</span> <span class="w">last</span> <span class="w">query.</span></p>
+<div class="manif-w" data-ref="rManif">
+<p class="manif l-en"><span class="w">I</span> <span class="w">work</span> <span class="w">on</span> <span class="w">every</span> <span class="w">layer.</span> <span class="w">I</span> <span class="w">design</span> <span class="w">the</span> <span class="w k">interface,</span> <span class="w">write</span> <span class="w">the</span> <span class="w k">API,</span> <span class="w">model</span> <span class="w">the</span> <span class="w k">database</span> <span class="w">and</span> <span class="w">put</span> <span class="w">it</span> <span class="w k">online.</span> <span class="w">You</span> <span class="w">talk</span> <span class="w">to</span> <span class="w">one</span> <span class="w">person</span> <span class="w">from</span> <span class="w">the</span> <span class="w">first</span> <span class="w">screen</span> <span class="w">to</span> <span class="w">the</span> <span class="w">last</span> <span class="w">query.</span></p>
+<p class="manif l-pt" lang="pt-BR"><span class="w">Eu</span> <span class="w">trabalho</span> <span class="w">em</span> <span class="w">todas</span> <span class="w">as</span> <span class="w">camadas.</span> <span class="w">Eu</span> <span class="w">desenho</span> <span class="w">a</span> <span class="w k">interface,</span> <span class="w">escrevo</span> <span class="w">a</span> <span class="w k">API,</span> <span class="w">modelo</span> <span class="w">o</span> <span class="w k">banco</span> <span class="w k">de</span> <span class="w k">dados</span> <span class="w">e</span> <span class="w">coloco</span> <span class="w k">no</span> <span class="w k">ar.</span> <span class="w">Você</span> <span class="w">fala</span> <span class="w">com</span> <span class="w">uma</span> <span class="w">pessoa</span> <span class="w">só,</span> <span class="w">da</span> <span class="w">primeira</span> <span class="w">tela</span> <span class="w">à</span> <span class="w">última</span> <span class="w">query.</span></p>
+</div>
 <div class="manif-sig rv">
 <span class="sig">Coli</span>
 <span class="mono mut-i">Full-stack developer</span>
@@ -999,11 +1018,13 @@ html{scroll-behavior:auto}
 (function () {
   'use strict';
   class DCLogic {
-    constructor() { this.props = {"accent":"#FF5B1F","skipIntro":false,"topography":true}; this.state = {}; }
+    constructor() { this.props = {"accent":"#FF5B1F","skipIntro":false,"topography":true,"language":"auto"}; this.state = {}; }
     setState(patch) {
       const next = typeof patch === 'function' ? patch(this.state, this.props) : patch;
+      const prev = this.state;
       this.state = Object.assign({}, this.state, next);
       this._apply();
+      if (this._mounted && this.componentDidUpdate) this.componentDidUpdate(this.props, prev);
     }
     forceUpdate() { this._apply(); }
     _apply() {
@@ -1035,12 +1056,16 @@ html{scroll-behavior:auto}
       this._tick = this._tick.bind(this);
       this._raf = requestAnimationFrame(this._tick);
       this.startIntro();
+      this._applyLang();
     }
   
     componentDidUpdate(prev) {
       const r = this._r || {};
       if (r.root) r.root.style.setProperty('--accent', this.props.accent || '#FF5B1F');
       if (!!prev.skipIntro !== !!this.props.skipIntro) this.startIntro();
+      const pl = this.props.language;
+      if (prev.language !== pl && (pl === 'en' || pl === 'pt') && pl !== this._langOf()) this.setState({ lang: pl });
+      this._applyLang();
     }
   
     componentWillUnmount() {
@@ -1078,6 +1103,8 @@ html{scroll-behavior:auto}
     _tick() {
       if (!this._alive) return;
       try { this._frame(); } catch (e) {}
+      // Content mounted after a language switch (menu, re-rendered nodes) is caught here.
+      if (this._i18nOn && (this._i18nTick = (this._i18nTick || 0) + 1) % 45 === 0) { try { this._applyLang(); } catch (e) {} }
       try { this._topo(performance.now()); } catch (e) {}
       this._raf = requestAnimationFrame(this._tick);
     }
@@ -1165,11 +1192,13 @@ html{scroll-behavior:auto}
   
       // About: words light up as the paragraph crosses the viewport.
       if (r.manif) {
-        const rc = r.manif.getBoundingClientRect();
+        const para = r.manif.querySelector(this._langOf() === 'pt' ? '.l-pt' : '.l-en') || r.manif;
+        if (para !== this._mpEl) { this._mpEl = para; this._mp = undefined; }
+        const rc = para.getBoundingClientRect();
         const mp = Math.min(1, Math.max(0, (vh * 0.85 - rc.top) / (rc.height + vh * 0.35)));
         if (this._mp === undefined || Math.abs(mp - this._mp) > 0.002) {
           this._mp = mp;
-          const words = r.manif.querySelectorAll('.w');
+          const words = para.querySelectorAll('.w');
           const n = words.length;
           for (let i = 0; i < n; i++) {
             const o = Math.min(1, Math.max(0, mp * n * 1.15 - i));
@@ -1309,6 +1338,215 @@ html{scroll-behavior:auto}
         if (g.drops[i]) g.drops[i].classList.toggle('on', on);
         if (g.items[i]) g.items[i].classList.toggle('on', on);
       }
+    }
+  
+    // Language: saved choice, then ?lang=, then the browser's first language. The language tweak wins
+    // when it is not "auto".
+    _langOf() {
+      const s = this.state || {};
+      if (s.lang) return s.lang;
+      if (!this._lang0) {
+        let l = '';
+        const p = this.props.language;
+        if (p === 'en' || p === 'pt') l = p;
+        if (!l) { try { const q = new URLSearchParams(window.location.search).get('lang'); if (q === 'en' || q === 'pt') l = q; } catch (e) {} }
+        if (!l) { try { const v = window.localStorage.getItem('coli-lang'); if (v === 'en' || v === 'pt') l = v; } catch (e) {} }
+        if (!l) {
+          const nav = window.navigator || {};
+          const first = (nav.languages && nav.languages[0]) || nav.language || '';
+          l = /^pt\b/i.test(first) ? 'pt' : 'en';
+        }
+        this._lang0 = l;
+      }
+      return this._lang0;
+    }
+  
+    setLang(l) {
+      try { window.localStorage.setItem('coli-lang', l); } catch (e) {}
+      this.setState({ lang: l });
+    }
+  
+    // Swaps text nodes and aria-labels between the English markup and the Portuguese dictionary.
+    // Each node keeps its English text; a node changed by a re-render takes its new text as English.
+    _applyLang() {
+      const r = this._r || {};
+      if (!r.root) return;
+      const pt = this._langOf() === 'pt';
+      if (!pt && !this._i18nOn) return;
+      this._i18nOn = true;
+      const T = this._ptDict();
+      const tr = (en) => {
+        const k = en.trim();
+        return pt && k && Object.prototype.hasOwnProperty.call(T, k) ? en.replace(k, T[k]) : en;
+      };
+      const walker = document.createTreeWalker(r.root, NodeFilter.SHOW_TEXT);
+      for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+        const p = n.parentElement;
+        if (!p || p.closest('.l-en,.l-pt,script,style')) continue;
+        if (n.__shown === undefined || n.data !== n.__shown) n.__en = n.data;
+        const out = tr(n.__en);
+        if (n.data !== out) n.data = out;
+        n.__shown = out;
+      }
+      r.root.querySelectorAll('[aria-label]').forEach((el) => {
+        const v = el.getAttribute('aria-label');
+        if (el.__enShown === undefined || v !== el.__enShown) el.__enLabel = v;
+        const out = tr(el.__enLabel);
+        if (v !== out) el.setAttribute('aria-label', out);
+        el.__enShown = out;
+      });
+      const doc = document.documentElement;
+      doc.lang = pt ? 'pt-BR' : 'en';
+      if (this.__title === undefined) this.__title = document.title;
+      document.title = tr(this.__title);
+      const md = document.querySelector('meta[name="description"]');
+      if (md) {
+        if (md.__en === undefined) md.__en = md.getAttribute('content') || '';
+        md.setAttribute('content', tr(md.__en));
+      }
+    }
+  
+    _ptDict() {
+      return Component._pt || (Component._pt = {
+        "Coli | Full-stack developer": "Coli | Desenvolvedor full-stack",
+        "Coli, full-stack developer. From the first screen to the last query: the interface, the API and the database of your product.": "Coli, desenvolvedor full-stack. Da primeira tela à última query: a interface, a API e o banco de dados do seu produto.",
+        "Full-stack developer": "Desenvolvedor full-stack",
+        "About": "Sobre",
+        "Work": "Projetos",
+        "Journey": "Trajetória",
+        "Contact": "Contato",
+        "Start a project": "Comece seu projeto",
+        "Close": "Fechar",
+        "(Full-stack developer)": "(Desenvolvedor full-stack)",
+        "Portfolio 2026": "Portfólio 2026",
+        "From scratch, to a full project": "Do zero ao projeto completo",
+        "From the first screen to the last query: I build the interface, the API and the database of your product.": "Da primeira tela à última query: eu faço a interface, a API e o banco de dados do seu produto.",
+        "See the work": "Ver os projetos",
+        "I have a project": "Tenho um projeto",
+        "Current project": "Projeto atual",
+        "Clinic management, from database to screen": "Gestão de clínicas, do banco à tela",
+        "Data": "Dados",
+        "Database": "Banco de dados",
+        "Tests": "Testes",
+        "Integrations": "Integrações",
+        "01 / About": "01 / Sobre",
+        "A message from Coli": "Um recado do Coli",
+        "Coli, 20 yo": "Coli, 20 anos",
+        "I am a Software Engineering student, really excited to start my professional career in software development.": "Sou estudante de Engenharia de Software e estou muito animado para começar minha carreira profissional em desenvolvimento.",
+        "Two ends, one product": "Duas pontas, um produto",
+        "Side A": "Lado A",
+        "Side B": "Lado B",
+        "What you see": "O que você vê",
+        "What holds it up": "O que sustenta",
+        "The part people touch. Screens in React and TypeScript that load fast, work with a keyboard and keep the state predictable.": "A parte que as pessoas tocam. Telas em React e TypeScript que carregam rápido, funcionam pelo teclado e mantêm o estado previsível.",
+        "The part nobody sees. APIs in Java, Spring Boot and Python, data in PostgreSQL and integrations with WhatsApp and Mercado Pago.": "A parte que ninguém vê. APIs em Java, Spring Boot e Python, dados em PostgreSQL e integrações com WhatsApp e Mercado Pago.",
+        "Cloud and in between": "Nuvem e o que fica no meio",
+        "Authentication": "Autenticação",
+        "Concurrency tests": "Testes de concorrência",
+        "Migrations": "Migrações",
+        "03 / Work": "03 / Projetos",
+        "From": "Do",
+        "database": "banco",
+        "to screen": "à tela",
+        "Each project, from the data model to the last animation on the screen.": "Cada projeto, do modelo de dados à última animação da tela.",
+        "Scroll to move sideways": "Role para avançar",
+        "In development, 2026": "Em desenvolvimento, 2026",
+        "A management system for health clinics. Each clinic runs its agenda, patient records and payments in one place, and sends reminders from its own WhatsApp number.": "Um sistema de gestão para clínicas de saúde. Cada clínica cuida da agenda, dos prontuários e dos pagamentos num lugar só e envia lembretes pelo próprio número de WhatsApp.",
+        "Book appointments and keep a waiting list;": "Agende consultas e mantenha uma lista de espera;",
+        "Keep patient records with PHQ-9 and GAD-7;": "Registre prontuários com PHQ-9 e GAD-7;",
+        "Confirm attendance over WhatsApp;": "Confirme presença pelo WhatsApp;",
+        "Receive time requests from a public page;": "Receba pedidos de horário por uma página pública;",
+        "Talk to the team in the built-in chat;": "Fale com a equipe no chat interno;",
+        "See reports by professional.": "Veja relatórios por profissional.",
+        "See the case study": "Ver o estudo de caso",
+        "Architecture": "Arquitetura",
+        "Messages": "Mensagens",
+        "Payments": "Pagamentos",
+        "Hover to play the demo": "Passe o mouse para ver a demo",
+        "Liora module": "Módulo do Liora",
+        "WhatsApp confirmations": "Confirmações pelo WhatsApp",
+        "Each clinic connects its own number through Meta's Embedded Signup. The day before the appointment, the patient gets a reminder with two buttons, and the answer updates the agenda.": "Cada clínica conecta o próprio número pelo Embedded Signup da Meta. Na véspera da consulta, o paciente recebe um lembrete com dois botões, e a resposta atualiza a agenda.",
+        "Connect the clinic's number in a Meta window inside Liora;": "Conecte o número da clínica numa janela da Meta dentro do Liora;",
+        "Send the reminder with Confirmo presença and Preciso remarcar;": "Envie o lembrete com Confirmo presença e Preciso remarcar;",
+        "Mark the appointment as confirmed when the patient taps;": "Marque a consulta como confirmada quando o paciente toca;",
+        "Flag reschedule requests on the agenda in amber;": "Destaque em âmbar na agenda os pedidos de remarcação;",
+        "Leave any other reply for the team to read.": "Deixe qualquer outra resposta para a equipe ler.",
+        "Day before": "Véspera",
+        "Reminder": "Lembrete",
+        "Patient taps": "Paciente toca",
+        "Confirmed": "Confirmada",
+        "Online booking": "Agendamento online",
+        "A public page where patients ask for a time. The request holds the slot until someone at the clinic accepts or declines it.": "Uma página pública onde o paciente pede um horário. O pedido reserva o horário até alguém da clínica aceitar ou recusar.",
+        "Share one booking link per clinic;": "Compartilhe um link de agendamento por clínica;",
+        "Pick a day and a free time;": "Escolha um dia e um horário livre;",
+        "Hold the slot while the request waits;": "Reserve o horário enquanto o pedido espera;",
+        "Accept it and fill in the patient form from the request;": "Aceite e preencha a ficha do paciente a partir do pedido;",
+        "Check conflicts with the same rules as the agenda.": "Confira conflitos com as mesmas regras da agenda.",
+        "Public page": "Página pública",
+        "Request": "Pedido",
+        "Slot": "Horário",
+        "Held": "Reservado",
+        "Clinic": "Clínica",
+        "Accepts or declines": "Aceita ou recusa",
+        "Clinical scales": "Escalas clínicas",
+        "PHQ-9 and GAD-7 in the patient record, with the score and the range calculated on the server. Each application goes to an insert-only table.": "PHQ-9 e GAD-7 no prontuário, com a pontuação e a faixa calculadas no servidor. Cada aplicação vai para uma tabela que só aceita inserção.",
+        "Apply the scale in the patient's Scales tab;": "Aplique a escala na aba Escalas do paciente;",
+        "See the score and the range while you answer;": "Veja a pontuação e a faixa enquanto responde;",
+        "Raise an alert when PHQ-9 item 9 is above zero;": "Gere um alerta quando o item 9 do PHQ-9 passa de zero;",
+        "Keep every application in the history with the range of that day;": "Guarde cada aplicação no histórico com a faixa daquele dia;",
+        "Log every read and write in the access log.": "Registre cada leitura e escrita no log de acesso.",
+        "PostgreSQL triggers": "Triggers no PostgreSQL",
+        "Patient record": "Prontuário",
+        "Server": "Servidor",
+        "Score and range": "Pontuação e faixa",
+        "Alert": "Alerta",
+        "Next deploy": "Próximo deploy",
+        "Your project can be the next one.": "Seu projeto pode ser o próximo.",
+        "04 / Journey": "04 / Trajetória",
+        "Where I come from": "De onde eu venho",
+        "My": "Minha",
+        "trajectory": "trajetória",
+        "From the first semester of Software Engineering to building with AI and AWS.": "Do primeiro semestre de Engenharia de Software até desenvolver com IA e AWS.",
+        "Scratch": "Zero",
+        "Next": "Próximo",
+        "Your project": "Seu projeto",
+        "Degree": "Graduação",
+        "Software Engineering": "Engenharia de Software",
+        "Bachelor's degree at FER - Faculdade de Engenharia de Resende.": "Bacharelado na FER - Faculdade de Engenharia de Resende.",
+        "Courses": "Cursos",
+        "Python and Java": "Python e Java",
+        "AI, databases and AWS Cloud": "IA, bancos de dados e AWS Cloud",
+        "Bradesco, Alura and AWS Academy.": "Bradesco, Alura e AWS Academy.",
+        "Building with AI": "Desenvolvimento com IA",
+        "Databases": "Bancos de dados",
+        "05 / Contact": "05 / Contato",
+        "Next step": "Próximo passo",
+        "From scratch,": "Do zero,",
+        "to a full project.": "ao projeto completo.",
+        "You describe the problem by email.": "Você descreve o problema por e-mail.",
+        "We schedule a call to define the scope.": "A gente marca uma conversa para definir o escopo.",
+        "I send a plan with stages and dates.": "Eu envio um plano com etapas e datas.",
+        "I build it, put it online and hand over the code.": "Eu desenvolvo, coloco no ar e entrego o código.",
+        "Tell me the problem. I take care of the layers.": "Me conte o problema. Eu cuido das camadas.",
+        "Copy email": "Copiar e-mail",
+        "Copied": "Copiado",
+        "Copy it manually": "Copie manualmente",
+        "Pages": "Páginas",
+        "Home": "Início",
+        "Social": "Redes",
+        "This site": "Este site",
+        "Replay the intro": "Ver a abertura de novo",
+        "Back to top": "Voltar ao topo",
+        "Built by hand, from CSS to deploy": "Feito à mão, do CSS ao deploy",
+        "Language": "Idioma",
+        "Sections": "Seções",
+        "Coli, back to the top": "Coli, voltar ao topo",
+        "Demo: a patient picks a day and a time and sends the request": "Demo: o paciente escolhe dia e horário e envia o pedido",
+        "Demo: answering PHQ-9 with the score updating and the item 9 alert": "Demo: o PHQ-9 sendo respondido, com a pontuação atualizando e o alerta do item 9",
+        "Demo: the patient confirms by WhatsApp and the agenda updates": "Demo: o paciente confirma pelo WhatsApp e a agenda atualiza",
+        "Liora architecture: React web app, Spring Boot API, PostgreSQL database, WhatsApp and Mercado Pago integrations": "Arquitetura do Liora: app web em React, API em Spring Boot, banco PostgreSQL e integrações com WhatsApp e Mercado Pago",
+        "Liora demo: booking a new appointment in the weekly agenda": "Demo do Liora: uma consulta marcada na agenda da semana"
+      });
     }
   
     // Topographic background: contour lines (marching squares) over a slow gradient-noise field.
@@ -1491,6 +1729,8 @@ html{scroll-behavior:auto}
         rRoot: ref('root'), rWrap: ref('wrap'), rTrack: ref('track'), rBar: ref('bar'),
         rManif: ref('manif'), rWord: ref('word'), rTilt: ref('tilt'), rDot: ref('dot'), rJc: ref('jc'), rJcPlot: ref('jcPlot'), rJcCols: ref('jcCols'), rProbe: ref('probe'), rBig: ref('big'), rMid: ref('mid'), rStk: ref('stk'),
         toggleMenu: () => this.setState({ menu: !(this.state && this.state.menu) }),
+        setEn: () => this.setLang('en'),
+        setPt: () => this.setLang('pt'),
         closeMenu: () => this.setState({ menu: false }),
         hoverFront: () => this.setState({ side: 'front' }),
         hoverBack: () => this.setState({ side: 'back' }),
@@ -1524,6 +1764,7 @@ html{scroll-behavior:auto}
       const phase = s.phase || 'load';
       const side = s.side || '';
       const copied = s.copied || '';
+      const lang = this._langOf();
       return Object.assign({}, h, {
         accent: this.props.accent || '#FF5B1F',
         showLoader: phase !== 'done',
@@ -1536,6 +1777,10 @@ html{scroll-behavior:auto}
         backCls: side === 'back' ? 'on' : '',
         projIdx: String(s.projIdx || 1).padStart(2, '0'),
         copyLabel: copied === 'ok' ? 'Copied' : copied === 'fail' ? 'Copy it manually' : 'Copy email',
+        lang,
+        langCls: lang === 'pt' ? 'is-pt' : '',
+        enPressed: lang === 'pt' ? 'false' : 'true',
+        ptPressed: lang === 'pt' ? 'true' : 'false',
       });
     }
   }
@@ -1554,6 +1799,7 @@ html{scroll-behavior:auto}
   });
   c._apply();
   c.componentDidMount();
+  c._mounted = true;
 })();
 </script>
 </body>
