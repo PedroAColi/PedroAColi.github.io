@@ -180,7 +180,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .half{flex:1 1 0;min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:28px;padding:clamp(24px,3vw,44px);border:1.5px solid #121311;border-radius:28px;overflow:hidden;transition:flex-grow .8s cubic-bezier(.2,.8,.2,1),background .5s,color .5s}
 .half.on{flex-grow:1.6;background:#121311;color:#ECEAE3}
 .half-n{display:flex;justify-content:space-between;gap:16px}
-.half-t{margin:0;font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:clamp(56px,8.2vw,150px);line-height:.8;letter-spacing:-.02em;display:flex;flex-direction:column}
+.half-t{margin:0;font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:clamp(48px,calc(8vw - 24px),140px);line-height:.8;letter-spacing:-.02em;display:flex;flex-direction:column}
 .half.on .half-t .o{-webkit-text-stroke-color:var(--accent,#FF5B1F)}
 .half-p{margin:0;font-size:clamp(17px,1.35vw,21px);line-height:1.4;max-width:470px}
 .tools{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
@@ -192,8 +192,10 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 /* work */
 .proj{position:relative;background:#121311;color:#ECEAE3;height:400vh}
 .proj-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
-.proj-track{display:flex;align-items:stretch;gap:24px;padding:0 4vw;width:max-content;height:min(70vh,700px);will-change:transform}
-.proj-intro{flex:0 0 auto;width:clamp(290px,30vw,460px);display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding-right:16px}
+.proj-track{display:flex;align-items:stretch;gap:24px;padding:0 4vw;width:max-content;height:clamp(540px,76vh,740px);will-change:transform}
+.card,.card-col,.proj-intro{container-type:inline-size}
+.proj-intro{flex:0 0 auto;width:clamp(290px,30vw,560px);display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding-right:16px}
+.big-h.proj-h{font-size:clamp(36px,13cqi,120px)}
 .proj-h .o{-webkit-text-stroke-color:var(--accent,#FF5B1F)}
 .proj-p{margin:0;font-size:17px;line-height:1.45;color:#C9C6BD;max-width:380px}
 .hint{display:flex;align-items:center;gap:12px}
@@ -201,16 +203,16 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 @keyframes nudge{50%{transform:translateX(8px)}}
 .card{flex:0 0 auto;width:clamp(300px,33vw,500px);height:100%;display:flex;flex-direction:column;gap:18px;padding:24px;border-radius:28px;background:#1C1D1A;border:1px solid rgba(236,234,227,.12);position:relative;overflow:hidden}
 .card-feat{width:clamp(320px,64vw,1000px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:28px}
-.card-col{display:flex;flex-direction:column;gap:18px;min-height:0}
+.card-col{display:flex;flex-direction:column;gap:14px;min-height:0}
 .card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .card-n{font-weight:900;font-stretch:125%;font-size:40px;line-height:1;color:var(--accent,#FF5B1F)}
 .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:7px 11px;border-radius:999px;border:1px solid rgba(236,234,227,.28)}
 .tag-acc{background:var(--accent,#FF5B1F);border-color:var(--accent,#FF5B1F);color:#121311}
-.card-t{margin:0;font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:clamp(40px,5vw,86px);line-height:.84;letter-spacing:-.02em}
+.card-t{margin:0;font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:clamp(34px,18cqi,86px);line-height:.84;letter-spacing:-.02em}
 .card-d{margin:0;font-size:16px;line-height:1.45;color:#C9C6BD}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .feats{list-style:none;margin:auto 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}
-.feats li{font-size:14px;line-height:1.35;padding:10px 0;border-top:1px solid rgba(236,234,227,.14)}
+.feats li{font-size:14px;line-height:1.35;padding:8px 0;border-top:1px solid rgba(236,234,227,.14)}
 .card-link{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;min-height:44px;border-bottom:1.5px solid var(--accent,#FF5B1F);align-self:flex-start}
 .arch{flex-grow:1;border-radius:20px;background:#121311;border:1px solid rgba(236,234,227,.1);padding:22px;display:flex;flex-direction:column;justify-content:center;gap:0;position:relative;min-height:0}
 .arch-cap{position:absolute;left:22px;top:18px;color:#A3A199}
@@ -237,7 +239,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .ph-glyph i:nth-child(2){left:12px;top:18px}
 .ph-glyph i:nth-child(3){left:0;top:36px;border-color:var(--accent,#FF5B1F)}
 .card-end{background:var(--accent,#FF5B1F);color:#121311;border:0;justify-content:space-between}
-.card-end .card-t{font-size:clamp(44px,5.4vw,92px)}
+.card-end .card-t{font-size:clamp(32px,15cqi,92px)}
 .proj-hud{position:absolute;left:4vw;right:4vw;bottom:26px;display:flex;align-items:center;gap:20px}
 .hud-n{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;font-variant-numeric:tabular-nums}
 .hud-bar{flex-grow:1;height:2px;background:rgba(236,234,227,.16);position:relative;overflow:hidden}
@@ -254,7 +256,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .glue .tools li.tool-acc{border-color:var(--accent,#FF5B1F);color:var(--accent,#FF5B1F)}
 
 /* project demos: hovering a card opens its demo from the centre */
-.card-t-s{font-size:clamp(34px,3.6vw,60px)}
+.card-t-s{font-size:clamp(24px,8cqi,60px)}
 .media{position:relative;flex-grow:1;min-height:0;border-radius:20px;overflow:hidden;background:#121311;border:1px solid rgba(236,234,227,.1)}
 .poster{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 22px 64px}
 .poster .node{min-width:190px;align-items:center;text-align:center}
@@ -480,6 +482,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .about-q{grid-template-columns:minmax(0,1fr)}
 .split{flex-direction:column;height:auto}
 .half.on{flex-grow:1}
+.half{flex:0 0 auto}
 .card{width:84vw;padding:20px}
 .card-feat{width:88vw;display:flex;flex-direction:column;overflow-y:auto}
 .arch{flex-grow:0;padding-top:48px}
@@ -502,6 +505,14 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .node b{font-size:12px}
 .steps{grid-template-columns:minmax(0,1fr)}
 .foot-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media (min-width:901px) and (max-height:760px){
+.proj-track{height:clamp(520px,84vh,740px)}
+.card{padding:20px}
+.card-feat{gap:22px}
+.card-col{gap:10px}
+.card-d{font-size:14.5px;line-height:1.4}
+.feats li{font-size:13px;padding:6px 0}
 }
 @media (prefers-reduced-motion:reduce){
 *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
@@ -680,7 +691,7 @@ html{scroll-behavior:auto}
 <div class="proj-track" data-ref="rTrack">
 <div class="proj-intro">
 <div class="mono mut-i">03 / Work</div>
-<h2 class="big-h proj-h">From database<br><span class="o">to screen</span></h2>
+<h2 class="big-h proj-h">From<br>database<br><span class="o">to screen</span></h2>
 <p class="proj-p">Each project, from the data model to the last animation on the screen.</p>
 <div class="hint mono"><span class="hint-k"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"></path></svg></span><span>Scroll to move sideways</span></div>
 </div>
@@ -1067,12 +1078,16 @@ html{scroll-behavior:auto}
       if (r.probe) {
         const pw = r.probe.getBoundingClientRect().width;
         if (pw > 0) {
-          const size = Math.round((vw * 0.92 / pw) * 1000) / 10;
-          if (size !== this._nameSize) {
-            this._nameSize = size;
-            // In the hero the name also stays under half the screen height, so wide, short screens keep room above it.
-            if (r.word) r.word.style.fontSize = Math.min(size, Math.round(vh * 5) / 10) + 'px';
-            if (r.big) r.big.style.fontSize = size + 'px';
+          const wordW = r.word ? r.word.clientWidth : vw * 0.92;
+          const bigW = r.big ? r.big.clientWidth : vw * 0.92;
+          // In the hero the name also stays under half the screen height.
+          const sWord = Math.min(Math.floor((wordW / pw) * 1000) / 10, Math.round(vh * 5) / 10);
+          const sBig = Math.floor((bigW / pw) * 1000) / 10;
+          if (sWord !== this._nameSize || sBig !== this._bigSize) {
+            this._nameSize = sWord;
+            this._bigSize = sBig;
+            if (r.word) r.word.style.fontSize = sWord + 'px';
+            if (r.big) r.big.style.fontSize = sBig + 'px';
           }
         }
       }
