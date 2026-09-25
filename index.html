@@ -45,7 +45,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .ld.out .ld-center{transform:translate3d(0,-14vh,0) scale(.86);opacity:0}
 .ld-mark{width:clamp(120px,15vw,210px);height:auto;overflow:visible;animation:pulse .7s cubic-bezier(.65,.05,0,1) 1.55s both}
 @keyframes pulse{0%{transform:scale(1)}45%{transform:scale(.9)}100%{transform:scale(1)}}
-.dr{stroke-dasharray:1 1;stroke-dashoffset:1;animation:draw 1.1s cubic-bezier(.65,.05,0,1) forwards}
+.dr{animation:draw 1.1s cubic-bezier(.65,.05,0,1) forwards}
+.dr-p{stroke-dasharray:272 272;stroke-dashoffset:272}
+.dr-c{stroke-dasharray:190 190;stroke-dashoffset:190}
 .dr-p{animation-delay:.15s}
 .dr-c{animation-delay:.45s}
 @keyframes draw{to{stroke-dashoffset:0}}
@@ -533,21 +535,7 @@ html{scroll-behavior:auto}
 <div class="ld-l ld-ink">
 <span class="ld-cv"></span>
 <div class="ld-center">
-<svg class="ld-mark" viewBox="-6 -6 148 132">
-<g fill="none" stroke-linejoin="miter" stroke-linecap="butt" transform="translate(26 0) skewX(-12)">
-<clipPath id="ldA"><rect x="55" y="24" width="35" height="40"></rect></clipPath>
-<clipPath id="ldT"><polygon points="-30,-30 150,-30 150,28 86,28 136,78 74,140 24,140 24,88 -28,140 -30,140"></polygon></clipPath>
-<g clip-path="url(#ldT)">
-<path class="dr dr-p" pathLength="1" d="M 8 112 V 24 A 16 16 0 0 1 24 8 H 55 A 16 16 0 0 1 71 24 V 54 A 16 16 0 0 1 55 70 H 8" stroke="#FF5B1F" stroke-width="16"></path>
-<path class="dr dr-c" pathLength="1" d="M 110 44 H 54 L 42 56 V 100 L 54 112 H 110" stroke="#121311" stroke-width="28"></path>
-<path class="dr dr-c" pathLength="1" d="M 110 44 H 54 L 42 56 V 100 L 54 112 H 110" stroke="#FF5B1F" stroke-width="16"></path>
-<g clip-path="url(#ldA)">
-<path class="dr dr-p" pathLength="1" d="M 8 112 V 24 A 16 16 0 0 1 24 8 H 55 A 16 16 0 0 1 71 24 V 54 A 16 16 0 0 1 55 70 H 8" stroke="#121311" stroke-width="28"></path>
-<path class="dr dr-p" pathLength="1" d="M 8 112 V 24 A 16 16 0 0 1 24 8 H 55 A 16 16 0 0 1 71 24 V 54 A 16 16 0 0 1 55 70 H 8" stroke="#FF5B1F" stroke-width="16"></path>
-</g>
-</g>
-</g>
-</svg>
+<svg class="ld-mark" viewBox="0 0 122.75 120"><g fill="none" stroke-linejoin="miter" stroke-linecap="butt" transform="translate(23.806 0) skewX(-12)"><clipPath id="tld"><polygon points="-30,-30 150,-30 150,28 86,28 136,78 74,140 24,140 24,88 -28,140 -30,140"></polygon></clipPath><mask id="mpld" maskUnits="userSpaceOnUse" x="-40" y="-40" width="220" height="220"><rect x="-40" y="-40" width="220" height="220" fill="#fff"></rect><path d="M 110 44 H 54 L 42 56 V 100 L 54 112 H 110" stroke="#000" stroke-width="28"></path><rect x="57" y="24" width="120" height="38" fill="#fff"></rect></mask><mask id="mcld" maskUnits="userSpaceOnUse" x="-40" y="-40" width="220" height="220"><rect x="-40" y="-40" width="220" height="220" fill="#fff"></rect><rect x="57" y="35" width="28" height="17.5" fill="#000"></rect></mask><g clip-path="url(#tld)" stroke="#FF5B1F" stroke-width="16"><path class="dr dr-p" mask="url(#mpld)" d="M 8 112 V 24 A 16 16 0 0 1 24 8 H 55 A 16 16 0 0 1 71 24 V 54 A 16 16 0 0 1 55 70 H 8"></path><path class="dr dr-c" mask="url(#mcld)" d="M 110 44 H 54 L 42 56 V 100 L 54 112 H 110"></path></g></g></svg>
 <div class="ld-cap"><span class="ld-name">Coli</span><span class="ld-role">Full-stack developer</span></div>
 </div>
 </div>
